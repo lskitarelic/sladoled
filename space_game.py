@@ -1,5 +1,7 @@
 import pygame
 import random
+# Sprite class for blocks + player
+import sprites
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -8,60 +10,6 @@ GREEN = (0, 255, 0)
 RED = (255, 0, 0)
  
  
-class Block(pygame.sprite.Sprite):
-    """
-    This class represents the ball
-    It derives from the "Sprite" class in Pygame
-    """
-    def __init__(self, color, width, height):
-        """ Constructor. Pass in the color of the block,
-        and its x and y position. """
-        # Call the parent class (Sprite) constructor
-        super().__init__()
- 
-        # Create an image of the block, and fill it with a color.
-        # This could also be an image loaded from the disk.
-        self.image = pygame.Surface([width, height])
-        self.image.fill(color)
- 
-        # Fetch the rectangle object that has the dimensions of the image
-        # image.
-        # Update the position of this object by setting the values
-        # of rect.x and rect.y
-        self.rect = self.image.get_rect()
- 
-    def reset_pos(self):
-        """ Reset position to the top of the screen, at a random x location.
-        Called by update() or the main program loop if there is a collision.
-        """
-        self.rect.y = random.randrange(-300, -20)
-        self.rect.x = random.randrange(0, screen_width)
- 
-    def update(self):
-        """ Called each frame. """
- 
-        # Move block down one pixel
-        self.rect.y += 1
- 
-        # If block is too far down, reset to top of screen.
-        if self.rect.y > 410:
-            self.reset_pos()
- 
- 
-class Player(Block):
-    """ The player class derives from Block, but overrides the 'update'
-    functionality with new a movement function that will move the block
-    with the mouse. """
-    def update(self):
-        # Get the current mouse position. This returns the position
-        # as a list of two numbers.
-        pos = pygame.mouse.get_pos()
- 
-        # Fetch the x and y out of the list,
-        # just like we'd fetch letters out of a string.
-        # Set the player object to the mouse location
-        self.rect.x = pos[0]
-        self.rect.y = pos[1]
  
 # Initialize Pygame
 pygame.init()
@@ -71,6 +19,8 @@ screen_width = 700
 screen_height = 400
 screen = pygame.display.set_mode([screen_width, screen_height])
  
+AYAYA = pygame.image.load('AYAYA.png').convert_alpha()
+HYPER = pygame.image.load('HYPER.png').convert_alpha()
 # This is a list of 'sprites.' Each block in the program is
 # added to this list. The list is managed by a class called 'Group.'
 block_list = pygame.sprite.Group()
@@ -80,7 +30,7 @@ all_sprites_list = pygame.sprite.Group()
  
 for i in range(50):
     # This represents a block
-    block = Block(BLACK, 20, 15)
+    block = sprites.Block(BLACK, 20, 15, AYAYA, screen_width)
  
     # Set a random location for the block
     block.rect.x = random.randrange(screen_width)
@@ -91,7 +41,7 @@ for i in range(50):
     all_sprites_list.add(block)
  
 # Create a red player block
-player = Player(RED, 20, 15)
+player = sprites.Player(RED, 20, 15, HYPER, screen_width)
 all_sprites_list.add(player)
  
 # Loop until the user clicks the close button.
@@ -112,7 +62,7 @@ while not done:
     screen.fill(WHITE)
  
     # Calls update() method on every sprite in the list
-    all_sprites_list.update()
+    all_sprites_list.update(screen_width)
  
     # See if the player block has collided with anything.
     blocks_hit_list = pygame.sprite.spritecollide(player, block_list, False)
@@ -123,15 +73,16 @@ while not done:
         print(score)
  
         # Reset block to the top of the screen to fall again.
-        block.reset_pos()
+        block.reset_pos(screen_width)
  
     # Draw all the spites
     all_sprites_list.draw(screen)
  
     # Limit to 20 frames per second
-    clock.tick(20)
+    clock.tick(30)
  
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
 pygame.quit()
+
