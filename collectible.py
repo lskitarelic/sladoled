@@ -3,18 +3,18 @@ import random
 
 class Collectible(pygame.sprite.Sprite):
 
-    def __init__(self, color, width, height, image, screen_width):
+    def __init__(self, value, width, height, image, screen_width):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.increment = 1
-
+        self.value =value;
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
         self.image = image
         #self.image.fill(color)
         # of rect.x and rect.y
         self.rect = self.image.get_rect()
-        self.rect.y = random.randrange(-50, -20)
+        self.rect.y = random.randrange(-100, -20)
         self.rect.x = random.randrange(0, screen_width)
         self.flag = True
 
@@ -23,7 +23,7 @@ class Collectible(pygame.sprite.Sprite):
         """ Reset position to the top of the screen, at a random x location.
         Called by update() or the main program loop if there is a collision.
         """
-        self.rect.y = random.randrange(-200, -20)
+        self.rect.y = random.randrange(-500, -20)
         self.rect.x = random.randrange(0, screen_width)
  
     def update(self, screen_width, score):
