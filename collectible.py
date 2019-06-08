@@ -43,15 +43,18 @@ class Collectible(pygame.sprite.Sprite):
         else:
             self.images = []
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream1.png')))
-            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream2.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream1.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream1.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream3.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream3.png')))
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream3.png')))
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream4.png')))
-            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream3.png')))
-            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream2.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream4.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'ice-cream4.png')))
             """ Called each frame. """
             
             self.image = self.images[self.idx]
-            self.idx = (self.idx + 1) % 5
+            self.idx = (self.idx + 1) % 9
 
 
         if (score % 15) != 0: self.flag = True
