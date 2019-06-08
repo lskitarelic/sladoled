@@ -12,7 +12,6 @@ def add_sprites(block_num, block_list, all_sprites_list):
         # Add the block to the list of objects
         block_list.add(block)
         all_sprites_list.add(block)
-
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -75,7 +74,6 @@ while not done:
 
     # Clear the screen
     screen.blit(background, (0, 0))
-    
  
     # Calls update() method on every sprite in the list
     all_sprites_list.update(screen_width, score)
@@ -89,7 +87,7 @@ while not done:
         textsurface = myfont.render("Score: " + str(score), False, SCOREBOARD_COLOR)
         # Reset block to the top of the screen to fall again.
         block.reset_pos(screen_width)
-        if score <= 15:
+        if score <= 10:
             add_sprites(1, block_list, all_sprites_list)
  
     # Draw all the spites
@@ -97,13 +95,11 @@ while not done:
 
     # Text logic
     screen.blit(textsurface, (0, 0))
-    
  
     # Limit to 60 frames per second
-    clock.tick(60)
+    clock.tick(30)
  
     # Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
  
 pygame.quit()
-

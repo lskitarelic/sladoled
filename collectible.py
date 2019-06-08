@@ -13,7 +13,7 @@ class Collectible(pygame.sprite.Sprite):
         #self.image.fill(color)
         # of rect.x and rect.y
         self.rect = self.image.get_rect()
-        self.rect.y = random.randrange(-1000, -50)
+        self.rect.y = random.randrange(-200, -20)
         self.rect.x = random.randrange(0, screen_width)
 
  
@@ -21,13 +21,17 @@ class Collectible(pygame.sprite.Sprite):
         """ Reset position to the top of the screen, at a random x location.
         Called by update() or the main program loop if there is a collision.
         """
-        self.rect.y = random.randrange(-200, -80)
+        self.rect.y = random.randrange(-50, -20)
         self.rect.x = random.randrange(0, screen_width)
  
     def update(self, screen_width, score):
         """ Called each frame. """
-        if score % 50 == 0 and self.increment <= 7:
-            self.increment += 0.2
+        if not score % 6: 
+            flag = True
+
+        if score % 6 == 0 and flag and self.increment < 20:
+            self.increment += 0.1
+            flag = False
  
         # Move block down one pixel
         self.rect.y += self.increment
