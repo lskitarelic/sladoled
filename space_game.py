@@ -42,7 +42,7 @@ for i in range(block_num):
  
     # Set a random location for the block
     block.rect.x = random.randrange(screen_width)
-    block.rect.y = random.randrange(screen_height)
+    block.rect.y = random.randrange(-500, -50)
  
     # Add the block to the list of objects
     block_list.add(block)
@@ -63,7 +63,7 @@ done = False
 clock = pygame.time.Clock()
  
 score = 0
- 
+textsurface = myfont.render("Score: " + str(score), False, SCOREBOARD_COLOR)
 # -------- Main Program Loop -----------
 while not done:
     for event in pygame.event.get():
