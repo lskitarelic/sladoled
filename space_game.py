@@ -1,7 +1,8 @@
 import pygame
 import random
-# Sprite class for blocks + player
 import sprites
+import os.path
+
  
 # Define some colors
 BLACK = (0, 0, 0)
@@ -19,10 +20,10 @@ screen_width = 960
 screen_height = 540
 screen = pygame.display.set_mode([screen_width, screen_height])
  
-AYAYA = pygame.image.load('AYAYA.png').convert_alpha()
-HYPER = pygame.image.load('HYPER.png').convert_alpha()
+AYAYA = pygame.image.load(os.path.join('images', 'AYAYA.png')).convert_alpha()
+HYPER = pygame.image.load(os.path.join('images', 'HYPER.png')).convert_alpha()
 
-background = pygame.image.load('space.jpg')
+background = pygame.image.load(os.path.join('images', 'space.jpg'))
 # This is a list of 'sprites.' Each block in the program is
 # added to this list. The list is managed by a class called 'Group.'
 block_list = pygame.sprite.Group()
