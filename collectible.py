@@ -12,7 +12,7 @@ class Collectible(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
 
-        frame_list = [image.load("frame1"), image.load("frame2)...]
+        #frame_list = [image.load("frame1"), image.load("frame2)...]
  
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.

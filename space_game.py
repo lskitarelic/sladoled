@@ -22,7 +22,7 @@ pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
 # Set the height and width of the screen
 screen_width = 960
 screen_height = 540
-screen = pygame.display.set_mode([screen_width, screen_height])
+screen = pygame.display.set_mode([screen_width, screen_height], pygame.FULLSCREEN)
  
 DOGGO = pygame.image.load(os.path.join('images', 'doggo.png')).convert_alpha()
 ICE_CREAM = pygame.image.load(os.path.join('images', 'ice-cream.png')).convert_alpha()
