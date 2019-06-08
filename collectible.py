@@ -6,13 +6,10 @@ class Collectible(pygame.sprite.Sprite):
     This class represents the ball
     It derives from the "Sprite" class in Pygame
     """
-    frame_list = []
 
     def __init__(self, color, width, height, image, screen_width):
         # Call the parent class (Sprite) constructor
         super().__init__()
-
-        #frame_list = [image.load("frame1"), image.load("frame2)...]
  
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
