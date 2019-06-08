@@ -15,12 +15,14 @@ RED = (255, 0, 0)
 pygame.init()
  
 # Set the height and width of the screen
-screen_width = 700
-screen_height = 400
+screen_width = 960
+screen_height = 540
 screen = pygame.display.set_mode([screen_width, screen_height])
  
 AYAYA = pygame.image.load('AYAYA.png').convert_alpha()
 HYPER = pygame.image.load('HYPER.png').convert_alpha()
+
+background = pygame.image.load('space.jpg')
 # This is a list of 'sprites.' Each block in the program is
 # added to this list. The list is managed by a class called 'Group.'
 block_list = pygame.sprite.Group()
@@ -28,7 +30,8 @@ block_list = pygame.sprite.Group()
 # This is a list of every sprite. All blocks and the player block as well.
 all_sprites_list = pygame.sprite.Group()
  
-for i in range(50):
+block_num = 100
+for i in range(block_num):
     # This represents a block
     block = sprites.Block(BLACK, 20, 15, AYAYA, screen_width)
  
@@ -40,10 +43,15 @@ for i in range(50):
     block_list.add(block)
     all_sprites_list.add(block)
  
-# Create a red player block
 player = sprites.Player(RED, 20, 15, HYPER, screen_width)
 all_sprites_list.add(player)
+
+# Text test
+pygame.font.init()
+myfont = pygame.font.SysFont('Fira Mono Medium', 30)
  
+textsurface = myfont.render('AYAYAY chu say amigo', False, (0, 0, 0))
+
 # Loop until the user clicks the close button.
 done = False
  
@@ -59,7 +67,8 @@ while not done:
             done = True
  
     # Clear the screen
-    screen.fill(WHITE)
+    screen.blit(background, (0, 0))
+    
  
     # Calls update() method on every sprite in the list
     all_sprites_list.update(screen_width)
@@ -77,6 +86,10 @@ while not done:
  
     # Draw all the spites
     all_sprites_list.draw(screen)
+
+    # Text logic
+    screen.blit(textsurface, (0, 0))
+    
  
     # Limit to 20 frames per second
     clock.tick(30)

@@ -31,7 +31,7 @@ class Block(pygame.sprite.Sprite):
         self.rect.y += 1
  
         # If block is too far down, reset to top of screen.
-        if self.rect.y > 410:
+        if self.rect.y > 540:
             self.reset_pos(screen_width)
  
  
