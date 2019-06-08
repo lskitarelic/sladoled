@@ -21,7 +21,6 @@ RED = (255, 0, 0)
  
 SCOREBOARD_COLOR = (237, 252, 251)
  
- 
 # Initialize Pygame
 pygame.init()
  
@@ -96,7 +95,7 @@ while not done:
     # Text logic
     screen.blit(textsurface, (0, 0))
  
-    # Limit to 60 frames per second
+    # Limit to 30 frames per second
     clock.tick(30)
  
     # Go ahead and update the screen with what we've drawn.
