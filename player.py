@@ -6,7 +6,7 @@ class Player(collectible.Collectible):
     """ The player class derives from Block, but overrides the 'update'
     functionality with new a movement function that will move the block
     with the mouse. """
-    def update(self, screen_width):
+    def update(self, screen_width, score):
         # Get the current mouse position. This returns the position
         # as a list of two numbers.
         pos = pygame.mouse.get_pos()
