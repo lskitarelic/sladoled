@@ -66,7 +66,7 @@ while not finished:
     all_sprites_list.add(player)
 
     pygame.mixer.init()
-    pygame.mixer.music.load(os.path.join('music', 'eat.wav'))
+    
 
     # Text test
     pygame.font.init()
@@ -117,10 +117,13 @@ while not finished:
         # Check the list of collisions.
         for block in blocks_hit_list:
             if block.value:
-                score += 1 
+                score += 1
+                pygame.mixer.music.load(os.path.join('music', 'eat.wav'))
                 pygame.mixer.music.play()
             else:
                 health -= 1
+                pygame.mixer.music.load(os.path.join('music', 'scream.wav'))
+                pygame.mixer.music.play()
                 for h in health_sprites_list:
                     health_sprites_list.remove(h)
                     break
