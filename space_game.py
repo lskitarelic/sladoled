@@ -43,6 +43,7 @@ HEALTH = pygame.image.load(os.path.join('images', 'health.png')).convert_alpha()
 
 
 gameover = pygame.image.load(os.path.join('images', 'game-over.jpg'))
+gameover_end = pygame.image.load(os.path.join('images', 'game-over-end.jpg'))
 background = pygame.image.load(os.path.join('images', 'space.jpg'))
 
 finished = False
@@ -95,12 +96,9 @@ while not finished:
                 done = True
             elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_ESCAPE:
-                        screen.blit(gameover, (0, 0))
+                        screen.blit(gameover_end, (0, 0))
                         pygame.display.flip()
-                        pygame.mixer.music.load(os.path.join('music', 'lose.wav'))
-                        pygame.mixer.music.play()
-                        while pygame.mixer.music.get_busy() == True:
-                            continue
+                        time.sleep(2)
                         done = True
                         finished = True
 
@@ -136,7 +134,9 @@ while not finished:
                 add_sprites(1, block_list, all_sprites_list, score)
             if health == 0:
                 screen.blit(gameover, (0, 0))
+                highscoreSurface = myfont.render('New highscore: ' + str(score), False, SCOREBOARD_COLOR)
                 if score > highscore:
+                    screen.blit(highscoreSurface, (360, 310))
                     highscore = score
                     with open('highscore.txt', 'w') as f:
                             f.write(str(highscore))
