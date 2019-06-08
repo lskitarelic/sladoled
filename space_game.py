@@ -83,7 +83,6 @@ while not done:
     # Check the list of collisions.
     for block in blocks_hit_list:
         score += 1
-        print(score)
         textsurface = myfont.render("Score: " + str(score), False, SCOREBOARD_COLOR)
         # Reset block to the top of the screen to fall again.
         block.reset_pos(screen_width)
