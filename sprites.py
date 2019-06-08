@@ -8,7 +8,7 @@ class Block(pygame.sprite.Sprite):
     """
     def __init__(self, color, width, height, image, screen_width):
         # Call the parent class (Sprite) constructor
-        super().__init__()
+        super(Block, self).__init__()
  
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
