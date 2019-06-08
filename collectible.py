@@ -31,7 +31,7 @@ class Collectible(pygame.sprite.Sprite):
         
         if (score % 15) != 0: self.flag = True
 
-        if score % 15 == 0 and self.flag and self.increment < 20 and score != 0:
+        if score % 15 == 0 and self.flag and self.increment < 25 and score != 0:
             self.increment += 1
             self.flag = False
  
