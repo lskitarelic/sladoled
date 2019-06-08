@@ -42,7 +42,7 @@ HOLE = pygame.image.load(os.path.join('images', 'hole.png')).convert_alpha()
 HEALTH = pygame.image.load(os.path.join('images', 'health.png')).convert_alpha()
 
 
-gameover = pygame.image.load(os.path.join('images', 'gameover.jpg'))
+gameover = pygame.image.load(os.path.join('images', 'game-over.jpg'))
 background = pygame.image.load(os.path.join('images', 'space.jpg'))
 
 finished = False
