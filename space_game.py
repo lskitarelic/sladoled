@@ -10,6 +10,7 @@ WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
  
+SCOREBOARD_COLOR = (237, 252, 251)
  
  
 # Initialize Pygame
@@ -80,7 +81,7 @@ while not done:
     for block in blocks_hit_list:
         score += 1
         print(score)
-        textsurface = myfont.render("Current score is:" + str(score), False, (0, 0, 0))
+        textsurface = myfont.render("Score: " + str(score), False, SCOREBOARD_COLOR)
         # Reset block to the top of the screen to fall again.
         block.reset_pos(screen_width)
  
