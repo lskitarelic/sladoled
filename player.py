@@ -14,5 +14,5 @@ class Player(collectible.Collectible):
         # Fetch the x and y out of the list,
         # just like we'd fetch letters out of a string.
         # Set the player object to the mouse location
-        self.rect.x = pos[0]
-        self.rect.y = pos[1]
+        self.rect.center = pos
+        
