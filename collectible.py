@@ -20,15 +20,6 @@ class Collectible(pygame.sprite.Sprite):
         self.rect.x = random.randrange(0, screen_width)
         self.flag = True
 
- 
-    def reset_pos(self, screen_width):
-        """ Reset position to the top of the screen, at a random x location.
-        Called by update() or the main program loop if there is a collision.
-        """
-        self.rect.y = random.randrange(-700, -50)
-        self.rect.x = random.randrange(0, screen_width)
- 
-    def update(self, screen_width, score):
         if not self.value:
             self.images = []
             self.images.append(pygame.image.load(os.path.join('images', 'hole1.png')))
@@ -37,9 +28,6 @@ class Collectible(pygame.sprite.Sprite):
             self.images.append(pygame.image.load(os.path.join('images', 'hole4.png')))
             self.images.append(pygame.image.load(os.path.join('images', 'hole1.png')))
             """ Called each frame. """
-            
-            self.image = self.images[self.idx]
-            self.idx = (self.idx + 1) % 5
         else:
             self.images = []
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream1.png')))
@@ -54,7 +42,20 @@ class Collectible(pygame.sprite.Sprite):
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream4.png')))
             self.images.append(pygame.image.load(os.path.join('images', 'ice-cream4.png')))
             """ Called each frame. """
-            
+
+ 
+    def reset_pos(self, screen_width):
+        """ Reset position to the top of the screen, at a random x location.
+        Called by update() or the main program loop if there is a collision.
+        """
+        self.rect.y = random.randrange(-700, -50)
+        self.rect.x = random.randrange(0, screen_width)
+ 
+    def update(self, screen_width, score):
+        if not self.value:
+            self.image = self.images[self.idx]
+            self.idx = (self.idx + 1) % 5
+        else:
             self.image = self.images[self.idx]
             self.idx = (self.idx + 1) % 11
 
