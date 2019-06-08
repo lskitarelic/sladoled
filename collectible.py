@@ -4,6 +4,7 @@ import random
 class Collectible(pygame.sprite.Sprite):
 
     def __init__(self, value, width, height, image, screen_width):
+        self.idx = 0
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.increment = 1
