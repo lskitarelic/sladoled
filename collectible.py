@@ -7,7 +7,7 @@ class Collectible(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.increment = 1
-        self.value =value;
+        self.value = value;
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
         self.image = image

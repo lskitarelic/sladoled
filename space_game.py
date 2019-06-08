@@ -3,6 +3,8 @@ import random
 import player
 import collectible
 import os.path
+import time
+
 
 def add_sprites(block_num, block_list, all_sprites_list, score):
     for i in range(block_num):
@@ -38,6 +40,7 @@ DOGGO = pygame.image.load(os.path.join('images', 'doggo.png')).convert_alpha()
 ICE_CREAM = pygame.image.load(os.path.join('images', 'ice-cream.png')).convert_alpha()
 HOLE = pygame.image.load(os.path.join('images', 'hole.png')).convert_alpha()
 
+gameover = pygame.image.load(os.path.join('images', 'gameover.jpg'))
 background = pygame.image.load(os.path.join('images', 'space.jpg'))
 # This is a list of 'sprites.' Each block in the program is
 # added to this list. The list is managed by a class called 'Group.'
@@ -54,6 +57,9 @@ add_sprites(block_num, block_list, all_sprites_list, 0)
  
 player = player.Player(True, 20, 15, DOGGO, screen_width)
 all_sprites_list.add(player)
+
+pygame.mixer.init()
+pygame.mixer.music.load('eat.wav')
 
 # Text test
 pygame.font.init()
@@ -76,10 +82,17 @@ while not done:
             done = True
         elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_ESCAPE:
+                    screen.blit(gameover, (0, 0))
+                    pygame.display.flip()
+                    pygame.mixer.music.load('lose.wav')
+                    pygame.mixer.music.play()
+                    while pygame.mixer.music.get_busy() == True:
+                        continue
                     done = True
 
     # Clear the screen
-    screen.blit(background, (0, 0))
+    if done != True:
+        screen.blit(background, (0, 0))
  
     # Calls update() method on every sprite in the list
     all_sprites_list.update(screen_width, score)
@@ -90,16 +103,25 @@ while not done:
     # Check the list of collisions.
     for block in blocks_hit_list:
         if block.value:
-            score += 1
+            score += 1 
+            pygame.mixer.music.play()
         else:
             health -= 1
         scoreSurface = myfont.render("Score: " + str(score), False, SCOREBOARD_COLOR)
         healthSurface = myfont.render("Health: " + str(health), False, SCOREBOARD_COLOR)
         # Reset block to the top of the screen to fall again.
         block.reset_pos(screen_width)
+        if score % 100 == 0 and score != 0:
+            add_sprites(1, block_list, all_sprites_list, score)
         if score <= 12:
             add_sprites(1, block_list, all_sprites_list, score)
         if health == 0:
+            screen.blit(gameover, (0, 0))
+            pygame.display.flip()
+            pygame.mixer.music.load('lose.wav')
+            pygame.mixer.music.play()
+            while pygame.mixer.music.get_busy() == True:
+                continue
             done = True
     # Draw all the spites
     all_sprites_list.draw(screen)
@@ -111,6 +133,9 @@ while not done:
     clock.tick(30)
  
     # Go ahead and update the screen with what we've drawn.
-    pygame.display.flip()
+    if done != True:
+        pygame.display.flip()
+
+
  
 pygame.quit()
