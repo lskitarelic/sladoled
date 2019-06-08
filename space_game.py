@@ -17,6 +17,8 @@ SCOREBOARD_COLOR = (237, 252, 251)
 # Initialize Pygame
 pygame.init()
  
+pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
+
 # Set the height and width of the screen
 screen_width = 960
 screen_height = 540

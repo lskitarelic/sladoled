@@ -9,6 +9,7 @@ class Collectible(pygame.sprite.Sprite):
     def __init__(self, color, width, height, image, screen_width):
         # Call the parent class (Sprite) constructor
         super().__init__()
+
  
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
@@ -33,3 +34,17 @@ class Collectible(pygame.sprite.Sprite):
         # If block is too far down, reset to top of screen.
         if self.rect.y > 540:
             self.reset_pos(screen_width)
+
+    def animate(self, dt):
+        if self.velocity.x > 0:  # Use the right images if sprite is moving right.
+            self.images = self.images_right
+        elif self.velocity.x < 0:
+            self.images = self.images_left
+
+        self.current_time += dt
+        if self.current_time >= self.animation_time:
+            self.current_time = 0
+            self.index = (self.index + 1) % len(self.images)
+            self.image = self.images[self.index]
+
+        self.rect.move_ip(*self.velocity)
