@@ -38,7 +38,7 @@ screen = pygame.display.set_mode([screen_width, screen_height], pygame.FULLSCREE
  
 DOGGO = pygame.image.load(os.path.join('images', 'doggo1.png')).convert_alpha()
 ICE_CREAM = pygame.image.load(os.path.join('images', 'ice-cream.png')).convert_alpha()
-HOLE = pygame.image.load(os.path.join('images', 'hole.png')).convert_alpha()
+HOLE = pygame.image.load(os.path.join('images', 'hole1.png')).convert_alpha()
 HEALTH = pygame.image.load(os.path.join('images', 'health.png')).convert_alpha()
 
 

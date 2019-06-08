@@ -1,5 +1,6 @@
 import pygame
 import random
+import os.path
 
 class Collectible(pygame.sprite.Sprite):
 
@@ -28,8 +29,18 @@ class Collectible(pygame.sprite.Sprite):
         self.rect.x = random.randrange(0, screen_width)
  
     def update(self, screen_width, score):
-        """ Called each frame. """
-        
+        if not self.value:
+            self.images = []
+            self.images.append(pygame.image.load(os.path.join('images', 'hole1.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'hole2.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'hole3.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'hole4.png')))
+            self.images.append(pygame.image.load(os.path.join('images', 'hole1.png')))
+            """ Called each frame. """
+            
+            self.image = self.images[self.idx]
+            self.idx = (self.idx + 1) % 5
+
         if (score % 15) != 0: self.flag = True
 
         if score % 15 == 0 and self.flag and self.increment < 25 and score != 0:
