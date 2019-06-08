@@ -51,7 +51,6 @@ all_sprites_list.add(player)
 pygame.font.init()
 myfont = pygame.font.SysFont('Fira Mono Medium', 30)
  
-textsurface = myfont.render('AYAYAY chu say amigo', False, (0, 0, 0))
 
 # Loop until the user clicks the close button.
 done = False
@@ -81,7 +80,7 @@ while not done:
     for block in blocks_hit_list:
         score += 1
         print(score)
- 
+        textsurface = myfont.render("Current score is:" + str(score), False, (0, 0, 0))
         # Reset block to the top of the screen to fall again.
         block.reset_pos(screen_width)
  
