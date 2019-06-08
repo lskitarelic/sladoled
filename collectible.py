@@ -16,7 +16,7 @@ class Collectible(pygame.sprite.Sprite):
         #self.image.fill(color)
         # of rect.x and rect.y
         self.rect = self.image.get_rect()
-        self.rect.y = random.randrange(-300, -50)
+        self.rect.y = random.randrange(-200, -50)
         self.rect.x = random.randrange(0, screen_width)
         self.flag = True
 
