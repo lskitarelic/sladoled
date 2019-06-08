@@ -1,6 +1,7 @@
 import pygame
 import random
-import sprites
+import player
+import collectible
 import os.path
 
  
@@ -21,8 +22,8 @@ screen_width = 960
 screen_height = 540
 screen = pygame.display.set_mode([screen_width, screen_height])
  
-AYAYA = pygame.image.load(os.path.join('images', 'AYAYA.png')).convert_alpha()
-HYPER = pygame.image.load(os.path.join('images', 'HYPER.png')).convert_alpha()
+DOGGO = pygame.image.load(os.path.join('images', 'doggo.png')).convert_alpha()
+ICE_CREAM = pygame.image.load(os.path.join('images', 'ice-cream.png')).convert_alpha()
 
 background = pygame.image.load(os.path.join('images', 'space.jpg'))
 # This is a list of 'sprites.' Each block in the program is
@@ -35,7 +36,7 @@ all_sprites_list = pygame.sprite.Group()
 block_num = 100
 for i in range(block_num):
     # This represents a block
-    block = sprites.Block(BLACK, 20, 15, AYAYA, screen_width)
+    block = collectible.Collectible(BLACK, 20, 15, ICE_CREAM, screen_width)
  
     # Set a random location for the block
     block.rect.x = random.randrange(screen_width)
@@ -45,7 +46,7 @@ for i in range(block_num):
     block_list.add(block)
     all_sprites_list.add(block)
  
-player = sprites.Player(RED, 20, 15, HYPER, screen_width)
+player = player.Player(RED, 20, 15, DOGGO, screen_width)
 all_sprites_list.add(player)
 
 # Text test
