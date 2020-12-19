@@ -32,7 +32,7 @@ pygame.init()
 pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
 
 # Set the height and width of the screen
-
+screen_width, screen_height = pygame.display.Info().current_w, pygame.display.Info().current_h
 screen = pygame.display.set_mode([screen_width, screen_height], pygame.FULLSCREEN)
  
 DOGGO = pygame.image.load(os.path.join('images', 'doggo1.png')).convert_alpha()
@@ -158,7 +158,7 @@ while not finished:
         # Text logic
         screen.blit(scoreSurface, (5, 5))
         # Limit to 30 frames per second
-        clock.tick(30)
+        clock.tick(60)
      
         # Go ahead and update the screen with what we've drawn.
         if done != True:

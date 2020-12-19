@@ -18,7 +18,7 @@ class Collectible(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()
         self.rect.y = random.randrange(-200, -50)
         self.rect.x = random.randrange(0, screen_width)
-        self.flag = True
+        self.flag = 1
 
         if not self.value:
             self.images = []
@@ -58,9 +58,12 @@ class Collectible(pygame.sprite.Sprite):
         else:
             self.image = self.images[self.idx]
             self.idx = (self.idx + 1) % 11
+        
+        if (score % 25) != 0 : self.flag = 1
 
-        if score % 25 == 0 and self.increment < 20 and score != 0:
+        if score % 25 == 0 and self.flag and self.increment < 12 and score != 0:
             self.increment += 1
+            self.flag = 0
  
         # Move block down one pixel
         self.rect.y += self.increment
