@@ -9,7 +9,7 @@ import life
 def add_sprites(block_num, block_list, all_sprites_list, score):
     for i in range(block_num):
         # This represents a block
-        if score % 5 ==  0 and score != 0:
+        if score % 50 ==  0 and score != 0:
             block = collectible.Collectible(False, 20, 15, HOLE, screen_width)
         else:
             block = collectible.Collectible(True, 20, 15, ICE_CREAM, screen_width)
@@ -32,8 +32,7 @@ pygame.init()
 pygame.mouse.set_cursor((8,8),(0,0),(0,0,0,0,0,0,0,0),(0,0,0,0,0,0,0,0))
 
 # Set the height and width of the screen
-screen_width = 960
-screen_height = 540
+
 screen = pygame.display.set_mode([screen_width, screen_height], pygame.FULLSCREEN)
  
 DOGGO = pygame.image.load(os.path.join('images', 'doggo1.png')).convert_alpha()
@@ -43,8 +42,11 @@ HEALTH = pygame.image.load(os.path.join('images', 'health.png')).convert_alpha()
 
 
 gameover = pygame.image.load(os.path.join('images', 'game-over.jpg'))
+gameover = pygame.transform.scale(gameover, (screen_width, screen_height))
 gameover_end = pygame.image.load(os.path.join('images', 'game-over-end.jpg'))
+gameover_end = pygame.transform.scale(gameover_end, (screen_width, screen_height))
 background = pygame.image.load(os.path.join('images', 'space.jpg'))
+background = pygame.transform.scale(background, (screen_width, screen_height))
 
 finished = False
 while not finished:
@@ -60,8 +62,10 @@ while not finished:
 
     add_sprites(block_num, block_list, all_sprites_list, 0)
 
-    for i in range(5):
-        health_sprites_list.add(life.Health(HEALTH, 650 + 60 * i))
+    num_of_hearts = 6
+    heart_size = 60
+    for i in range(num_of_hearts):
+        health_sprites_list.add(life.Health(HEALTH, screen_width - num_of_hearts * heart_size + heart_size * i))
      
     player = user.Player(True, 20, 15, DOGGO, screen_width)
     all_sprites_list.add(player)
@@ -86,9 +90,9 @@ while not finished:
             highscore = int(line)
      
     score = 0
-    health= 5
+    num_of_hearts = 6
     scoreSurface = myfont.render('Score: ' + str(score) + '        Highscore: ' + str(highscore), False, SCOREBOARD_COLOR)
-    healthSurface = myfont.render("Health: " + str(health), False, SCOREBOARD_COLOR)
+    healthSurface = myfont.render("Health: " + str(num_of_hearts), False, SCOREBOARD_COLOR)
     # -------- Main Program Loop -----------
     while not done:
         for event in pygame.event.get():
@@ -119,7 +123,7 @@ while not finished:
                 pygame.mixer.music.load(os.path.join('music', 'eat.wav'))
                 pygame.mixer.music.play()
             else:
-                health -= 1
+                num_of_hearts -= 1
                 pygame.mixer.music.load(os.path.join('music', 'scream.wav'))
                 pygame.mixer.music.play()
                 for h in health_sprites_list:
@@ -128,11 +132,11 @@ while not finished:
             scoreSurface = myfont.render('Score: ' + str(score) + '        Highscore: ' + str(highscore), False, SCOREBOARD_COLOR)
             # Reset block to the top of the screen to fall again.
             block.reset_pos(screen_width)
-            if score % 100 == 0 and score != 0:
+            if score % 50 == 0 and score != 0:
                 add_sprites(1, block_list, all_sprites_list, score)
-            if score <= 12:
+            if score <= 20:
                 add_sprites(1, block_list, all_sprites_list, score)
-            if health == 0:
+            if num_of_hearts == 0:
                 screen.blit(gameover, (0, 0))
                 highscoreSurface = myfont.render('New highscore: ' + str(score), False, SCOREBOARD_COLOR)
                 if score > highscore:

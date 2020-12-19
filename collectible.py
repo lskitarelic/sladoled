@@ -9,7 +9,7 @@ class Collectible(pygame.sprite.Sprite):
         # Call the parent class (Sprite) constructor
         super().__init__()
         self.increment = 1
-        self.value = value;
+        self.value = value
         # Create an image of the block, and fill it with a color.
         # This could also be an image loaded from the disk.
         self.image = image
@@ -59,17 +59,13 @@ class Collectible(pygame.sprite.Sprite):
             self.image = self.images[self.idx]
             self.idx = (self.idx + 1) % 11
 
-
-        if (score % 15) != 0: self.flag = True
-
-        if score % 15 == 0 and self.flag and self.increment < 25 and score != 0:
+        if score % 25 == 0 and self.increment < 20 and score != 0:
             self.increment += 1
-            self.flag = False
  
         # Move block down one pixel
         self.rect.y += self.increment
  
         # If block is too far down, reset to top of screen.
-        if self.rect.y > 540:
+        if self.rect.y > pygame.display.Info().current_h:
             self.reset_pos(screen_width)
 
